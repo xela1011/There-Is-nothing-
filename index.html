@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nothing Page</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #box {
+    display: none;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #loader {
+    font-size: 22px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Fake loading -->
+<div id="loader">Loading nothing... 0%</div>
+
+<!-- Main prank -->
+<div id="box">
+  <h1 id="text">There is nothing</h1>
+  <button id="btn" onclick="nextStep()">Next</button>
+</div>
+
+<script>
+  // Fake loading animation
+  let percent = 0;
+  let loading = setInterval(() => {
+    percent += 10;
+    document.getElementById("loader").innerText =
+      "Loading nothing... " + percent + "%";
+    if (percent >= 100) {
+      clearInterval(loading);
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("box").style.display = "block";
+    }
+  }, 300);
+
+  // Texts and buttons (8 steps)
+  const steps = [
+    { text: "There is nothing", btn: "Next" },
+    { text: "Still nothing", btn: "Continue" },
+    { text: "Why are you clicking?", btn: "Next" },
+    { text: "Don't waste your time clicking", btn: "Continue" },
+    { text: "Seriously, there is NOTHING", btn: "Next" },
+    { text: "Your patience level: impressive", btn: "Continue" },
+    { text: "I warned you already", btn: "Next" },
+    { text: "I SAID THERE IS NOTHING 😐", btn: "Restart" }
+  ];
+
+  let step = 0;
+
+  function nextStep() {
+    step++;
+    if (step >= steps.length) step = 0;
+
+    document.getElementById("text").innerText = steps[step].text;
+    document.getElementById("btn").innerText = steps[step].btn;
+  }
+</script>
+
+</body>
+</html>
